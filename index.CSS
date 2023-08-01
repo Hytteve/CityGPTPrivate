@@ -16,3 +16,12 @@ header{
     width: 100%;
     z-index: 1000;
 }
+nav span{
+    font-size: 1.2em;
+    text-align: center;
+    padding: 2.5% 2.75% 2% 2.75%;
+    margin: 1% 1% 1% 1.5%;
+    font-weight: bold;
+    border: black 1px solid;
+    border-radius: 0.8em;
+}
