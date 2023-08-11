@@ -2,15 +2,17 @@
 
 html{
     box-sizing: border-box;
+    height: 100%;
 }
 
 body{
     background-color: white;
     font-family: 'Raleway', sans-serif;
+    height: 100%;
 }
 
 header{
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
@@ -27,8 +29,45 @@ nav{
 }
 
 nav span{
-    font-size: 1.6em;
+    font-size: 1.8em;
     text-align: center;
-    padding: 2.5% 2.75% 2% 2.75%;
+    padding: 2% 2% 2% 2%;
     font-weight: bold;
+}
+
+.grid1{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-row-gap: 0;
+    grid-column-gap: 0;
+    position: relative;
+    top: 0;
+    left: 0;
+    bottom: 0px;
+    width:100vw;
+    height: 100vh;
+
+}
+
+.box{
+    color: black;
+    font-size: 1.3em;
+    margin: 0 0 0 0;
+    padding:0 0 0 0;
+    border: red 1px dashed;
+    border-radius: 0.8em;
+}
+
+h2{
+    font-size: 1em;
+}
+
+.menu{
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+
+.demo{
+    grid-column: 2/3;
+    grid-row: 1/2;
 }
