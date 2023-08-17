@@ -82,3 +82,28 @@ h2{
     background-color: white ;
     color: black;
 }
+
+.toolbox{
+    display: flex;
+    flex-direction: column;
+    border: gray 1px solid;
+    border-radius: 0.8em;
+    padding: 1em;
+    margin: 1em;
+    box-shadow: 1px 1px 1px 1px grey;
+}
+
+.item1{
+    margin:0.5em;
+    padding: 0.5em;
+    border: lightgray 1.5px solid;
+    border-radius: 0.5em;
+}
+
+.item2{
+    margin:0.5em;
+    padding: 0.5em;
+    border: blue 2px solid;
+    border-radius: 0.5em;
+}
+
