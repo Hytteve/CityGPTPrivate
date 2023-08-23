@@ -1,5 +1,5 @@
-// import fetch from "node-fetch";
-// import fs from "fs";
+import fetch from "./node-fetch";
+import fs from "./fs";
 async function query(filename) {
     const data = fs.readFileSync(filename);
     const response = await fetch(
