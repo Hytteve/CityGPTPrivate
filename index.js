@@ -16,5 +16,6 @@ async function query(filename) {
 query("cat.jpeg").then((response) => {
     console.log(JSON.stringify(response));
 });
-var Output = document.getElementById("Output")
-var OutputLine = "<p>" + JSON.stringify(response) + "</p>"
+var Output = document.getElementById("Output");
+var OutputLine = "<p>" + JSON.stringify(response) + "</p>";
+Output.innerHTML += OutputLine;
