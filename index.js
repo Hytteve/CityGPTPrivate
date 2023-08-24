@@ -1,8 +1,8 @@
 // import fetch from "node-fetch";
 // import fs from "fs";
 
-const fetch = require("node-fetch");
-const fs = require("fs");
+var fetch = require("node-fetch");
+var fs = require("fs");
 
 async function query(filename) {
     const data = fs.readFileSync(filename);
