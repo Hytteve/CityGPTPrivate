@@ -1,53 +1,53 @@
 // var http = require('http');
+// var fs = require('fs');
+
+
+
 
 // var server = http.createServer(function(req, res){
 //     console.log('request was made: ' + req.url);
-//     res.writeHead(200, {'Content-Type': 'text/plain'});
-//     res.end('Hey ninjas');
+
+//     if (req.url === '/home' || req.url === '/') {
+//         res.writeHead(200, {'Content-Type': 'text/html'});
+//         fs.createReadStream(__dirname + '/index.html').pipe(res);
+//     } 
+//     else if (req.url === '/api' || req.url === '/api/') {
+//     res.writeHead(200, {'Content-Type': 'application/json'});
+//     var myObj = {
+//         name: 'Ryu',
+//         job: 'Ninja',
+//         age: 29
+//     };
+//     res.end(JSON.stringify(myObj));
+//     } else {
+//         res.writeHead(404, {'Content-Type': 'text/html'});
+//         fs.createReadStream(__dirname + '/404.html').pipe(res);
+//     };
 // });
 
 // server.listen(3000, '127.0.0.1');
-// console.log('yo dawgs, now listening to port 3000');
+// console.log('Now listening to port 3000');
 
 
 
-// var http = require('http');
-
-// var fs = require('fs');
-
-// var myReadStream = fs.createReadStream(__dirname + '/readMe.txt');
-// var myWriteStream = fs.createWriteStream(__dirname + '/writeMe.txt');
-
-// myReadStream.on('data', function(chunk){
-//     console.log('new chunk received:');
-//     myWriteStream.write(chunk);
-// });
-
-
-// var http = require('http');
-
-// var fs = require('fs');
-
-// var myReadStream = fs.createReadStream(__dirname + '/readMe.txt');
-// var myWriteStream = fs.createWriteStream(__dirname + '/writeMe.txt');
-
-// myReadStream.pipe(myWriteStream);
+var express = require('express');
+var app = express();
 
 
 
-var http = require('http');
-var fs = require('fs');
-
-
-
-
-var server = http.createServer(function(req, res){
-    console.log('request was made: ' + req.url);
-    res.writeHead(200, {'Content-Type': 'text/html'});
-
-    var myReadStream = fs.createReadStream(__dirname + '/index.html', 'utf8');
-    myReadStream.pipe(res);
+app.get('/', function(req, res){
+    res.send('this is the homepage');
+});
+app.get('/contact', function(req, res){
+    res.send('this is the contact page');
 });
 
-server.listen(3000, '127.0.0.1');
-console.log('yo dawgs, now listening to port 3000');
+
+app.get('/profile/:id', function(req, res){
+    res.send('You requested to see a profile with the id of ' + req.params.id);
+});
+
+
+
+
+app.listen(3000);
