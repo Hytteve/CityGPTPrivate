@@ -105,6 +105,11 @@ h2{
     border-radius: 0.5em;
 }
 
+.item3{
+    margin:0.5em;
+    padding: 0 0 0 0;
+}
+
 .submitButton{
     margin:0.5em;
     padding: 0.5em;
@@ -118,7 +123,21 @@ h2{
     width: 100%;
 
     margin: 0 0 0 0;
+    cursor:pointer;
 }
+
+.submitButton:hover{
+    background-color: lightgrey;
+}
+
+.submitButton:active{
+    background-color: grey;
+    color: white;
+}
+
+
+
+
 
 .itemTitle{
     padding:0.3em;

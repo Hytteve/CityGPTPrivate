@@ -41,9 +41,9 @@ app.get('/', function(req, res){
 
 app.post('/upload', urlencodedParser, function(req, res){
     console.log(req.body);
-    query(`${req.body.model}.jpg`).then((response) => {
+    query(`public/${req.body.model}.jpg`).then((response) => {
         console.log(JSON.stringify(response));
-        res.render('index-success', {data: response});
+        res.render('index-success', {data: response, model: req.body.model});
     });
 });
 // app.get('/', function(req, res){
