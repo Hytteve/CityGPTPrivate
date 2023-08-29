@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var todoController = require('./controllers/todoController');
+var port = process.env.PORT || 5001;
 
 var app = express();
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
@@ -47,5 +48,4 @@ app.post('/contact', urlencodedParser, function(req, res){
 
 
 // listen to port
-app.listen(5001);
-console.log('Now listening to port 5001');
+app.listen(port, () => console.log(`Listening on port ${port}`));
