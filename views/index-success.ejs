@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width", initial-scale="1.0">
+    <title>CityGPT</title>
+    <link href="assets/index.CSS", rel="stylesheet", type="text/css"/>
+    <!-- <script type = "module", src="index.js"></script> -->
+
+  
+  </head>
+  <body>
+    <main>
+      <div>
+        <section class="grid1">
+          <div class="box title">
+            <nav>
+              <span>CityGPT</span>
+            </nav>
+            <!-- <%- include('partials/nav.ejs') %> -->
+          </div>
+  
+          <div class="box menu">
+            <div class="toolbox">
+              <div class="item1">
+                <div class="itemTitle">
+                  Select Model
+                </div>
+                <form id="generate" action="/upload" method="post">
+                  <div class="sub1 sub1item1">
+                    <input type="radio" name="model" id="radio1" value="InfGen" required="required"/>
+                    <label for="radio1">InfGen</label>
+                  </div>
+                  <div class="sub1 sub1item2">
+                    <input type="radio" name="model" id="radio2" value="Completion"/>
+                    <label for="radio2">Completion</label>
+                  </div>
+                  <div class="sub1 sub1item3">
+                    <input type="radio" name="model" id="radio3" value="FillGrid"/>
+                    <label for="radio3">FillGrid</label>
+                  </div>
+                </form>
+              
+
+              </div>
+              <div class="item1">
+                <div class="itemTitle">
+                  Select Input
+                </div>
+              </div>
+              <div class="item2">
+                <form id="generate" action="/upload" method="post">
+                  <button type="submit" formaction="/upload" formmethod="post" class="submitButton" form="generate">
+                    Generate
+                  </button>
+                </form>
+              </div>
+              
+            </div>
+          </div>
+            
+          <div class="box demo">
+            <h2>demo placeholder</h2>
+            <h2><%= data[0].label %></h2>
+          </div>
+        </section>
+      </div>
+    </main>
+
+
+
+  </body>
+</html>
+
+

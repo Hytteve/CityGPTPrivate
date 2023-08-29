@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 // var todoController = require('./controllers/todoController');
 var port = process.env.PORT || 5001;
+var fs = require('fs');
 
 var app = express();
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
@@ -13,13 +14,37 @@ app.set('view engine', 'ejs');
 //static files
 app.use(express.static('./public'));
 
+var API_TOKEN = "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"; 
+
+async function query(filename) {
+    const data = fs.readFileSync(filename);
+    const response = await fetch(
+        "https://api-inference.huggingface.co/models/google/vit-base-patch16-224",
+        {
+            headers: { Authorization: `Bearer ${API_TOKEN}` },
+            method: "POST",
+            body: data,
+        }
+    );
+    const result = await response.json();
+    return result;
+}
 
 //fire controllers
 // todoController(app);
 
 
+
 app.get('/', function(req, res){
     res.render('index');
+});
+
+app.post('/upload', urlencodedParser, function(req, res){
+    console.log(req.body);
+    query("cat.jpeg").then((response) => {
+        console.log(JSON.stringify(response));
+        res.render('index-success', {data: response});
+    });
 });
 // app.get('/', function(req, res){
 //     res.sendFile(__dirname + '/index.html');
