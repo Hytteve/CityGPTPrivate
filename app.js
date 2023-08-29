@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var todoController = require('./controllers/todoController');
+// var todoController = require('./controllers/todoController');
 var port = process.env.PORT || 5001;
 
 var app = express();
@@ -15,7 +15,7 @@ app.use(express.static('./public'));
 
 
 //fire controllers
-todoController(app);
+// todoController(app);
 
 
 app.get('/', function(req, res){
@@ -25,20 +25,20 @@ app.get('/', function(req, res){
 //     res.sendFile(__dirname + '/index.html');
 // });
 
-app.get('/contact', function(req, res){
-    res.render('contact', {qs: req.query});
-});
+// app.get('/contact', function(req, res){
+//     res.render('contact', {qs: req.query});
+// });
 
 
-app.get('/profile/:id', function(req, res){
-    var data = {age: 29, job: 'ninja', hobbies: ['eating', 'fighting', 'fishing']};
-    res.render('profile', {person: req.params.id, data: data});
-});
+// app.get('/profile/:id', function(req, res){
+//     var data = {age: 29, job: 'ninja', hobbies: ['eating', 'fighting', 'fishing']};
+//     res.render('profile', {person: req.params.id, data: data});
+// });
 
-app.post('/contact', urlencodedParser, function(req, res){
-    console.log(req.body);
-    res.render('contact-success', {data: req.body});
-});
+// app.post('/contact', urlencodedParser, function(req, res){
+//     console.log(req.body);
+//     res.render('contact-success', {data: req.body});
+// });
 
 
 
