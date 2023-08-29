@@ -1,6 +1,3 @@
-
-
-
 var express = require('express');
 var bodyParser = require('body-parser');
 var todoController = require('./controllers/todoController');
@@ -49,6 +46,6 @@ app.post('/contact', urlencodedParser, function(req, res){
 
 
 
-//listen to port
-app.listen(3000);
-console.log('Now listening to port 3000');
+// listen to port
+app.listen(5001);
+console.log('Now listening to port 5001');
