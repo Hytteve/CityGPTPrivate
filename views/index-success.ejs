@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width", initial-scale="1.0">
-    <title>CityGPT</title>
+    <title>City</title>
     <link href="assets/index.CSS", rel="stylesheet", type="text/css"/>
     <!-- <script type = "module", src="index.js"></script> -->
 
@@ -15,7 +15,7 @@
         <section class="grid1">
           <div class="box title">
             <nav>
-              <span>CityGPT</span>
+              <span>City</span>
             </nav>
             <!-- <%- include('partials/nav.ejs') %> -->
           </div>
@@ -28,16 +28,16 @@
                 </div>
                 <form id="generate" action="/upload" method="post">
                   <div class="sub1 sub1item1">
-                    <input type="radio" name="model" id="radio1" value="InfGen" required="required"/>
-                    <label for="radio1">InfGen</label>
+                    <input type="radio" name="model" id="radio1" value="cat" required="required"/>
+                    <label for="radio1">Cat</label>
                   </div>
                   <div class="sub1 sub1item2">
-                    <input type="radio" name="model" id="radio2" value="Completion"/>
-                    <label for="radio2">Completion</label>
+                    <input type="radio" name="model" id="radio2" value="dog"/>
+                    <label for="radio2">Dog</label>
                   </div>
                   <div class="sub1 sub1item3">
-                    <input type="radio" name="model" id="radio3" value="FillGrid"/>
-                    <label for="radio3">FillGrid</label>
+                    <input type="radio" name="model" id="radio3" value="hamster"/>
+                    <label for="radio3">Hamster</label>
                   </div>
                 </form>
               
@@ -61,7 +61,7 @@
             
           <div class="box demo">
             <h2>demo placeholder</h2>
-            <h2><%= data[0].label %></h2>
+            <h2>Label: <%= data[0].label %>, Score: <%= data[0].score %></h2>
           </div>
         </section>
       </div>

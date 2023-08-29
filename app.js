@@ -41,7 +41,7 @@ app.get('/', function(req, res){
 
 app.post('/upload', urlencodedParser, function(req, res){
     console.log(req.body);
-    query("cat.jpeg").then((response) => {
+    query(`${req.body.model}.jpg`).then((response) => {
         console.log(JSON.stringify(response));
         res.render('index-success', {data: response});
     });
