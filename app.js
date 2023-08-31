@@ -47,14 +47,14 @@ async function query2(filename) {
     const arrayBuffer = await response.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
     const filetype = await fileTypeFromBuffer(buffer);
-    const outputFilename = `public/out.${filetype.ext}`;
-    fs.createWriteStream(outputFilename).write(buffer);
-    // if (filetype.ext) {
-    //     const outputFilename = `public/out.${filetype.ext}`;
-    //     fs.createWriteStream(outputFilename).write(buffer);
-    // } else {
-    //     console.log("Filetype not found");
-    // }
+    // const outputFilename = `public/out.${filetype.ext}`;
+    // fs.createWriteStream(outputFilename).write(buffer);
+    if (filetype.ext) {
+        const outputFilename = `public/out.${filetype.ext}`;
+        fs.createWriteStream(outputFilename).write(buffer);
+    } else {
+        console.log("Filetype not found");
+    }
 }
 
 //fire controllers
