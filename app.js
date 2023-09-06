@@ -11,7 +11,11 @@ import {fileTypeFromBuffer} from "file-type";
 var app = express();
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
+  }
 
 //set up template engine
 app.set('view engine', 'ejs');
@@ -34,28 +38,28 @@ async function query(filename) {
     return result;
 }
 
-async function query2(filename) {
-    const data = fs.readFileSync(filename);
-    const response = await fetch(
-        "https://api-inference.huggingface.co/models/lambdalabs/sd-image-variations-diffusers",
-        {
-            headers: { Authorization: `Bearer ${API_TOKEN}` },
-            method: "POST",
-            body: data,
-        }
-    );
-    const arrayBuffer = await response.arrayBuffer();
-    const buffer = Buffer.from(arrayBuffer);
-    const filetype = await fileTypeFromBuffer(buffer);
-    // const outputFilename = `public/out.${filetype.ext}`;
-    // fs.createWriteStream(outputFilename).write(buffer);
-    if (filetype.ext) {
-        const outputFilename = `public/out.${filetype.ext}`;
-        fs.createWriteStream(outputFilename).write(buffer);
-    } else {
-        console.log("Filetype not found");
-    }
-}
+// async function query2(filename) {
+//     const data = fs.readFileSync(filename);
+//     const response = await fetch(
+//         "https://api-inference.huggingface.co/models/lambdalabs/sd-image-variations-diffusers",
+//         {
+//             headers: { Authorization: `Bearer ${API_TOKEN}` },
+//             method: "POST",
+//             body: data,
+//         }
+//     );
+//     const arrayBuffer = await response.arrayBuffer();
+//     const buffer = Buffer.from(arrayBuffer);
+//     const filetype = await fileTypeFromBuffer(buffer);
+//     // const outputFilename = `public/out.${filetype.ext}`;
+//     // fs.createWriteStream(outputFilename).write(buffer);
+//     if (filetype.ext) {
+//         const outputFilename = `public/out.${filetype.ext}`;
+//         fs.createWriteStream(outputFilename).write(buffer);
+//     } else {
+//         console.log("Filetype not found");
+//     }
+// }
 
 //fire controllers
 // todoController(app);
@@ -68,14 +72,16 @@ app.get('/', function(req, res){
 
 app.post('/upload', urlencodedParser, function(req, res){
     console.log(req.body);
-    query2(`public/${req.body.model}.jpg`);
-    query(`public/${req.body.model}.jpg`).then((response) => {
-        console.log(JSON.stringify(response));
-        res.render('index-success', {data: response, model: req.body.model});
-    });
-
-    
-
+    // query2(`public/${req.body.model}.jpg`);
+    if (req.body.model == "Completion") {
+        const id = getRandomIntInclusive(1, 20);
+        console.log(id);
+        res.render('index-success', {id: id, model: req.body.model});
+    }
+    // query(`public/${req.body.model}.jpg`).then((response) => {
+    //     console.log(JSON.stringify(response));
+    //     res.render('index-success', {data: response, model: req.body.model});
+    // });
 
 });
 // app.get('/', function(req, res){

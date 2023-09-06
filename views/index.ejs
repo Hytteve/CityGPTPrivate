@@ -26,28 +26,31 @@
                 <div class="itemTitle">
                   Select Model
                 </div>
-                <form id="generate" action="/upload" method="post">
+                <form id="pick" action="/upload" method="post">
                   <div class="sub1 sub1item1">
-                    <input type="radio" name="model" id="radio1" value="cat" required="required"/>
-                    <label for="radio1">Cat</label>
+                    <input type="radio" name="model" id="radio1" value="InfGen" required="required"/>
+                    <label for="radio1">InfGen</label>
                   </div>
                   <div class="sub1 sub1item2">
-                    <input type="radio" name="model" id="radio2" value="dog"/>
-                    <label for="radio2">Dog</label>
+                    <input type="radio" name="model" id="radio2" value="Completion"/>
+                    <label for="radio2">Completion</label>
                   </div>
                   <div class="sub1 sub1item3">
-                    <input type="radio" name="model" id="radio3" value="hamster"/>
-                    <label for="radio3">Hamster</label>
+                    <input type="radio" name="model" id="radio3" value="fill-grid"/>
+                    <label for="radio3">Fill Grid</label>
                   </div>
                 </form>
-              
+              </div>
 
+              <div class="item2">
+                <form id="pick" action="/upload" method="post">
+                  <button type="submit" formaction="/upload" formmethod="post" class="submitButton" form="pick">
+                    Pick a City Randomly
+                  </button>
+                </form>
               </div>
-              <div class="item1">
-                <div class="itemTitle">
-                  Select Input
-                </div>
-              </div>
+
+
               <div class="item2">
                 <form id="generate" action="/upload" method="post">
                   <button type="submit" formaction="/upload" formmethod="post" class="submitButton" form="generate">
@@ -60,7 +63,11 @@
           </div>
             
           <div class="box demo">
-            <h2>demo placeholder</h2>
+
+          </div>
+
+          <div class="box history">
+            <h2>Placeholder for History</h2>
           </div>
         </section>
       </div>
