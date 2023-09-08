@@ -24,19 +24,19 @@ app.use(express.static('./public'));
 
 var API_TOKEN = "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"; 
 
-async function query(filename) {
-    const data = fs.readFileSync(filename);
-    const response = await fetch(
-        "https://api-inference.huggingface.co/models/google/vit-base-patch16-224",
-        {
-            headers: { Authorization: `Bearer ${API_TOKEN}` },
-            method: "POST",
-            body: data,
-        }
-    );
-    const result = await response.json();
-    return result;
-}
+// async function query(filename) {
+//     const data = fs.readFileSync(filename);
+//     const response = await fetch(
+//         "https://api-inference.huggingface.co/models/google/vit-base-patch16-224",
+//         {
+//             headers: { Authorization: `Bearer ${API_TOKEN}` },
+//             method: "POST",
+//             body: data,
+//         }
+//     );
+//     const result = await response.json();
+//     return result;
+// }
 
 // async function query2(filename) {
 //     const data = fs.readFileSync(filename);
@@ -64,19 +64,29 @@ async function query(filename) {
 //fire controllers
 // todoController(app);
 
-
+var id;
 
 app.get('/', function(req, res){
     res.render('index');
 });
 
-app.post('/upload', urlencodedParser, function(req, res){
+app.post('/pick', urlencodedParser, function(req, res){
     console.log(req.body);
     // query2(`public/${req.body.model}.jpg`);
     if (req.body.model == "Completion") {
-        const id = getRandomIntInclusive(1, 20);
+        id = getRandomIntInclusive(1, 20);
         console.log(id);
-        res.render('index-success', {id: id, model: req.body.model});
+        res.render('index-completion', {id: id, model: req.body.model, infgen: '', completion: 'checked="checked"', fillgrid: ''});
+    }
+    else if (req.body.model == "FillGrid") {
+        id = getRandomIntInclusive(1, 20);
+        console.log(id);
+        res.render('index-fillgrid', {id: id, model: req.body.model, infgen: '', completion: '', fillgrid: 'checked="checked"'});
+    }
+    else if (req.body.model == "InfGen") {
+        id = getRandomIntInclusive(1, 20);
+        console.log(id);
+        res.render('index-infgen', {id: id, model: req.body.model, infgen: 'checked="checked"', completion: '', fillgrid: ''});
     }
     // query(`public/${req.body.model}.jpg`).then((response) => {
     //     console.log(JSON.stringify(response));
@@ -84,6 +94,36 @@ app.post('/upload', urlencodedParser, function(req, res){
     // });
 
 });
+
+
+app.post('/cut', urlencodedParser, function(req, res){
+    console.log(req.body);
+    // query2(`public/${req.body.model}.jpg`);
+    if (req.body.model == "Completion") {
+        console.log(id);
+        res.render('index-cut', {id: id, model: req.body.model, infgen: '', completion: 'checked="checked"', fillgrid: ''});
+    }
+    // query(`public/${req.body.model}.jpg`).then((response) => {
+    //     console.log(JSON.stringify(response));
+    //     res.render('index-success', {data: response, model: req.body.model});
+    // });
+
+});
+
+app.post('/pick2', urlencodedParser, function(req, res){
+    console.log(req.body);
+    // query2(`public/${req.body.model}.jpg`);
+    if (req.body.model == "Completion") {
+        console.log(id);
+        res.render('index-completion', {id: id, model: req.body.model, infgen: '', completion: 'checked="checked"', fillgrid: ''});
+    }
+    // query(`public/${req.body.model}.jpg`).then((response) => {
+    //     console.log(JSON.stringify(response));
+    //     res.render('index-success', {data: response, model: req.body.model});
+    // });
+
+});
+
 // app.get('/', function(req, res){
 //     res.sendFile(__dirname + '/index.html');
 // });

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width", initial-scale="1.0">
     <title>City</title>
     <link href="assets/index.CSS", rel="stylesheet", type="text/css"/>
-    <!-- <script type = "module", src="index.js"></script> -->
+
 
   
   </head>
@@ -15,9 +15,10 @@
         <section class="grid1">
           <div class="box title">
             <nav>
-              <span>City</span>
+              <div class="nav1">
+                <span class="span1">City</span>
+              </div>
             </nav>
-            <!-- <%- include('partials/nav.ejs') %> -->
           </div>
   
           <div class="box menu">
@@ -26,17 +27,17 @@
                 <div class="itemTitle">
                   Select Model
                 </div>
-                <form id="pick" action="/upload" method="post">
+                <form id="pick" action="/pick" method="post">
                   <div class="sub1 sub1item1">
-                    <input type="radio" name="model" id="radio1" value="InfGen" required="required"/>
+                    <input type="radio" name="model" id="radio1" value="InfGen" required="required" <%= infgen  %>/>
                     <label for="radio1">InfGen</label>
                   </div>
                   <div class="sub1 sub1item2">
-                    <input type="radio" name="model" id="radio2" value="Completion"/>
+                    <input type="radio" name="model" id="radio2" value="Completion" <%= completion  %>/>
                     <label for="radio2">Completion</label>
                   </div>
                   <div class="sub1 sub1item3">
-                    <input type="radio" name="model" id="radio3" value="fill-grid"/>
+                    <input type="radio" name="model" id="radio3" value="FillGrid" <%= fillgrid  %>/>
                     <label for="radio3">Fill Grid</label>
                   </div>
                 </form>
@@ -44,9 +45,11 @@
 
 
               <div class="item2">
-                <form id="pick" action="/upload" method="post">
-                  <button type="submit" formaction="/upload" formmethod="post" class="submitButton" form="pick">
-                    Pick a City Randomly
+                <form id="pick" action="/pick" method="post">
+                  <button type="submit" formaction="/pick" formmethod="post" class="submitButton" form="pick">
+                    <div class="buttonText">
+                      Pick Another City
+                    </div>
                   </button>
                 </form>
               </div>
@@ -56,15 +59,17 @@
                   Select Area
                 </div>
                 <div class="sub2">
-                  Drag the grey box around to select area for generation
+                  Drag the grey box to select area for generation
                 </div>
                 
               </div>
 
               <div class="item2">
-                <form id="generate" action="/upload" method="post">
-                  <button type="submit" formaction="/upload" formmethod="post" class="submitButton" form="generate">
-                    Generate
+                <form id="pick" action="/cut" method="post">
+                  <button type="submit" formaction="/cut" formmethod="post" class="submitButton" form="pick">
+                    <div class="buttonText">
+                      Cut Selected Area
+                    </div>
                   </button>
                 </form>
               </div>
@@ -75,13 +80,21 @@
               
             
           <div class="box demo">
-            <div class="container">
+            <div class="container2">
               <img src="presets/<%= id %>.jpg" class="placeholder">
             </div>
           </div>
 
           <div class="box history">
-            <h2>Placeholder for History</h2>
+            <div class="historybox">
+              <div class="hist1">
+                <span>Generated maps will be displayed here</span>
+              </div>
+              
+              <div class="hist2">
+                <span>Generated maps will be displayed here</span>
+              </div>
+            </div>
           </div>
         </section>
       </div>

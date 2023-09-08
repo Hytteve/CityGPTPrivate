@@ -30,48 +30,80 @@
                 </div>
                 <form id="pick" action="/pick" method="post">
                   <div class="sub1 sub1item1">
-                    <input type="radio" name="model" id="radio1" value="InfGen" required="required"/>
+                    <input type="radio" name="model" id="radio1" value="InfGen" required="required" <%= infgen  %>/>
                     <label for="radio1">InfGen</label>
                   </div>
                   <div class="sub1 sub1item2">
-                    <input type="radio" name="model" id="radio2" value="Completion"/>
+                    <input type="radio" name="model" id="radio2" value="Completion" <%= completion  %>/>
                     <label for="radio2">Completion</label>
                   </div>
                   <div class="sub1 sub1item3">
-                    <input type="radio" name="model" id="radio3" value="FillGrid"/>
+                    <input type="radio" name="model" id="radio3" value="FillGrid" <%= fillgrid  %>/>
                     <label for="radio3">Fill Grid</label>
                   </div>
                 </form>
               </div>
 
+
               <div class="item2">
                 <form id="pick" action="/pick" method="post">
                   <button type="submit" formaction="/pick" formmethod="post" class="submitButton" form="pick">
                     <div class="buttonText">
-                      Pick City
-                    </div>
+                        Pick Another City
+                      </div>
+                  </button>
+                </form>
+              </div>
+
+              <div class="item1">
+                <div class="itemTitle">
+                  Select Area
+                </div>
+                <div class="sub2">
+                  Drag the grey box to select area for generation
+                </div>
+                
+              </div>
+
+              <div class="item2">
+                <form id="pick" action="/pick2" method="post">
+                  <button type="submit" formaction="/pick2" formmethod="post" class="submitButton" form="pick">
+                    <div class="buttonText">
+                        Re-select Area
+                      </div>
+                  </button>
+                </form>
+              </div>
+              
+
+              <div class="item2">
+                <form id="pick" action="/cut" method="post">
+                  <button type="submit" formaction="/cut" formmethod="post" class="submitButton" form="pick">
+                    <div class="buttonText">
+                        Generate
+                      </div>
                   </button>
                 </form>
               </div>
             </div>
           </div>
+
+              
             
           <div class="box demo">
-            <div class="container1">
-              <div class="display-cap">
-                <span>City map will be displayed here</span>
-              </div>
+            <div class="container2">
+              <img src="presets/<%= id %>.jpg" class="placeholder">
             </div>
           </div>
 
           <div class="box history">
             <div class="historybox">
-              <div class="hist1">
-                <span>Generated maps will be displayed here</span>
+              <div class="container3">
+                <img src="presets/<%= id %>.jpg" class="placeholder">
               </div>
-              
-              <div class="hist2">
-                <span>Generated maps will be displayed here</span>
+
+              <div class="container3">
+                <img src="presets/<%= id %>.jpg" class="placeholder">
               </div>
             </div>
           </div>
