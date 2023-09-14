@@ -29,15 +29,15 @@
                 </div>
                 <form id="pick" action="/pick" method="post">
                   <div class="sub1 sub1item1">
-                    <input type="radio" name="model" id="radio1" value="InfGen" required="required" <%= infgen  %>/>
+                    <input type="radio" name="data" id="radio1" value='{"model":"InfGen"}' required="required" <%= infgen  %>/>
                     <label for="radio1">InfGen</label>
                   </div>
                   <div class="sub1 sub1item2">
-                    <input type="radio" name="model" id="radio2" value="Completion" <%= completion  %>/>
+                    <input type="radio" name="data" id="radio2" value='{"model":"Completion"}'<%= completion  %>/>
                     <label for="radio2">Completion</label>
                   </div>
                   <div class="sub1 sub1item3">
-                    <input type="radio" name="model" id="radio3" value="FillGrid" <%= fillgrid  %>/>
+                    <input type="radio" name="data" id="radio3" value='{"model":"FillGrid"}' <%= fillgrid  %>/>
                     <label for="radio3">Fill Grid</label>
                   </div>
                 </form>
