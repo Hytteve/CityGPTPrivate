@@ -23,7 +23,7 @@ function getRandomIntInclusive(min, max) {
 //set up template engine
 app.set('view engine', 'ejs');
 //static files
-app.use(express.static('./public'));
+app.use(express.static('./public/'));
 
 app.use('/cropperjs', express.static( './node_modules/cropperjs'));
 
