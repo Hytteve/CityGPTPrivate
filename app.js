@@ -32,7 +32,7 @@ var API_TOKEN = "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";
 // async function query(filename) {
 //     const data = fs.readFileSync(filename);
 //     const response = await fetch(
-//         "https://api-inference.huggingface.co/models/google/vit-base-patch16-224",
+//         "https://api-inference.huggingface.co/models/ptgytic/backend",
 //         {
 //             headers: { Authorization: `Bearer ${API_TOKEN}` },
 //             method: "POST",
@@ -43,31 +43,36 @@ var API_TOKEN = "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";
 //     return result;
 // }
 
-// async function query2(filename) {
-//     const data = fs.readFileSync(filename);
-//     const response = await fetch(
-//         "https://api-inference.huggingface.co/models/lambdalabs/sd-image-variations-diffusers",
-//         {
-//             headers: { Authorization: `Bearer ${API_TOKEN}` },
-//             method: "POST",
-//             body: data,
-//         }
-//     );
-//     const arrayBuffer = await response.arrayBuffer();
-//     const buffer = Buffer.from(arrayBuffer);
-//     const filetype = await fileTypeFromBuffer(buffer);
-//     // const outputFilename = `public/out.${filetype.ext}`;
-//     // fs.createWriteStream(outputFilename).write(buffer);
-//     if (filetype.ext) {
-//         const outputFilename = `public/out.${filetype.ext}`;
-//         fs.createWriteStream(outputFilename).write(buffer);
-//     } else {
-//         console.log("Filetype not found");
-//     }
-// }
+async function query2(id, x, y) {
+    const filename = "public/presets/" + id.toString() + ".json";
+    const stream = fs.readFileSync(filename, 'utf8');
+    const scence = JSON.parse(stream);
+    const data = `{x: ${x}, y: ${y}, scene: ${scence['scence']}}`
+    console.log(data);
+    const response = await fetch(
+        "https://api-inference.huggingface.co/models/ptgytic/backend",
+        {
+            headers: { Authorization: `Bearer ${API_TOKEN}` },
+            method: "POST",
+            body: data,
+        }
+    );
+    console.log(response);
+    const arrayBuffer = await response.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+    const filetype = await fileTypeFromBuffer(buffer);
+    const outputFilename = `public/out.${filetype.ext}`;
+    fs.createWriteStream(outputFilename).write(buffer);
+    // if (filetype.ext) {
+    //     const outputFilename = `public/out.${filetype.ext}`;
+    //     fs.createWriteStream(outputFilename).write(buffer);
+    // } else {
+    //     console.log("Filetype not found");
+    // }
+}
 
 //fire controllers
-// todoController(app);
+//todoController(app);
 
 var id;
 
@@ -113,6 +118,7 @@ app.post('/cut', urlencodedParser, function(req, res){
         console.log(dataJson.model);
         console.log(dataJson.x);
         console.log(dataJson.y);
+        query2(id, dataJson.x, dataJson.y);
         res.render('index-cut', {id: id, model: req.body.model, infgen: '', completion: 'checked="checked"', fillgrid: ''});
     }
     // query(`public/${req.body.model}.jpg`).then((response) => {
