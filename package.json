@@ -9,13 +9,16 @@
     "file-type": "^18.5.0",
     "jquery": "^3.7.1",
     "node": "^20.5.1",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "python-shell": "^5.0.0",
+    "python3": "^0.0.1"
   },
   "name": "citygptprivate",
   "description": "Test",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
+    "install": "npm install && pip install -r requirements.txt",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },

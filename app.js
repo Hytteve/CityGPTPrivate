@@ -9,6 +9,7 @@ var port = process.env.PORT || 5001;
 import fs from "fs";
 import {fileTypeFromBuffer} from "file-type";
 import Cropper from 'cropperjs';
+import {spawn} from 'child_process';
 
 
 var app = express();
@@ -18,7 +19,7 @@ function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
-  }
+    }
 
 //set up template engine
 app.set('view engine', 'ejs');
@@ -43,33 +44,33 @@ var API_TOKEN = "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";
 //     return result;
 // }
 
-async function query2(id, x, y) {
-    const filename = "public/presets/" + id.toString() + ".json";
-    const stream = fs.readFileSync(filename, 'utf8');
-    const scence = JSON.parse(stream);
-    const data = `{x: ${x}, y: ${y}, scene: ${scence['scence']}}`
-    console.log(data);
-    const response = await fetch(
-        "https://api-inference.huggingface.co/models/ptgytic/backend",
-        {
-            headers: { Authorization: `Bearer ${API_TOKEN}` },
-            method: "POST",
-            body: data,
-        }
-    );
-    console.log(response);
-    const arrayBuffer = await response.arrayBuffer();
-    const buffer = Buffer.from(arrayBuffer);
-    const filetype = await fileTypeFromBuffer(buffer);
-    const outputFilename = `public/out.${filetype.ext}`;
-    fs.createWriteStream(outputFilename).write(buffer);
+// async function query2(id, x, y) {
+//     const filename = "public/presets/" + id.toString() + ".json";
+//     const stream = fs.readFileSync(filename, 'utf8');
+//     const scence = JSON.parse(stream);
+//     const data = `{x: ${x}, y: ${y}, scene: ${scence['scence']}}`
+//     console.log(data);
+//     const response = await fetch(
+//         "https://api-inference.huggingface.co/models/ptgytic/backend",
+//         {
+//             headers: { Authorization: `Bearer ${API_TOKEN}` },
+//             method: "POST",
+//             body: data,
+//         }
+//     );
+//     console.log(response);
+//     const arrayBuffer = await response.arrayBuffer();
+//     const buffer = Buffer.from(arrayBuffer);
+//     const filetype = await fileTypeFromBuffer(buffer);
+//     const outputFilename = `public/out.${filetype.ext}`;
+//     fs.createWriteStream(outputFilename).write(buffer);
     // if (filetype.ext) {
     //     const outputFilename = `public/out.${filetype.ext}`;
     //     fs.createWriteStream(outputFilename).write(buffer);
     // } else {
     //     console.log("Filetype not found");
     // }
-}
+// }
 
 //fire controllers
 //todoController(app);
@@ -118,8 +119,21 @@ app.post('/cut', urlencodedParser, function(req, res){
         console.log(dataJson.model);
         console.log(dataJson.x);
         console.log(dataJson.y);
-        query2(id, dataJson.x, dataJson.y);
-        res.render('index-cut', {id: id, model: req.body.model, infgen: '', completion: 'checked="checked"', fillgrid: ''});
+        // query2(id, dataJson.x, dataJson.y);
+        var process = spawn('python',["./cut.py", id, dataJson.x, dataJson.y] );
+        console.log("cut process started");
+        process.stdout.on('data', function(data) {
+            console.log("python data: ");
+            console.log(data.toString());
+        });
+        process.stderr.on('data', function(data) {
+            console.log("python error: ");
+            console.log(data.toString());
+        });
+        process.on('exit', function(code) {
+            res.render('index-cut', {id: id, model: req.body.model, infgen: '', completion: 'checked="checked"', fillgrid: ''});
+        });
+
     }
     // query(`public/${req.body.model}.jpg`).then((response) => {
     //     console.log(JSON.stringify(response));

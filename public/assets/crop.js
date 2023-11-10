@@ -61,7 +61,7 @@ var cropper = new Cropper(image, {
 
 
 document.getElementById('cropbtn').addEventListener('click', function(){
-    alert("X: "+ cropper.getData().x+", Y: "+cropper.getData().y);
+    // alert("X: "+ cropper.getData().x+", Y: "+cropper.getData().y);
     document.getElementById('transfer').value =`{"model":"Completion","x":${cropper.getData().x},"y":${cropper.getData().y}}`;
 });
 
